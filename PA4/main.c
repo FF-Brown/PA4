@@ -33,5 +33,7 @@ int main(void)
 	printf("Player 2 roll sum: %d\n", rolls[1]);
 	printf("Player 2 funds: %d\n\n", funds[1]);
 
+	//test
+
 	return 0;
 }
