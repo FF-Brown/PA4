@@ -16,6 +16,9 @@ int main(void)
 	int funds[5] = { DEFAULT_FUNDS, DEFAULT_FUNDS, DEFAULT_FUNDS, DEFAULT_FUNDS, DEFAULT_FUNDS };
 	int bets[5] = { 0, 0, 0, 0, 0 };
 	int rolls[5] = { 0, 0, 0, 0, 0 };
+	int winner[5] = { 0, 0, 0, 0, 0 };
+	int winners = 0;
+	int multiplier[5] = { 0, 0, 0, 0, 0 };
 
 	srand(time(NULL));
 	display_menu();
@@ -28,7 +31,14 @@ int main(void)
 
 	//At this point, game is over.
 
-
+	if (winners > 1)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			if (multiplier[i] > 0)
+				multiplier[i] = 1;
+		}
+	}
 	//printf("Player 1 bet total: %d\n", bets[0]);
 	//printf("Player 1 roll sum: %d\n", rolls[0]);
 	//printf("Player 1 funds: %d\n\n", funds[0]);

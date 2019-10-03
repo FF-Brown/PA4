@@ -436,7 +436,7 @@ void old_money(void)
 	Description: Determines what multiplier to apply to the winner's bet (1.5x or 2x).
 	Input parameters: Bet of winning player
 	Returns: Multiplier (double)
-	Preconditions: Game over. Ruled out a tie
+	Preconditions: Game over. 
 	Postconditions: Returns multiplier
 */
 double bet_return(int winning_bet);
@@ -504,21 +504,46 @@ int game_intro(void)
 	Function: max_roll()
 	Date Created: 10/02/2019
 	Last Modified:
-	Description: Determines which player had the highest roll
-	Input parameters: Sum of rolls
-	Returns: Player number (int)
-	Preconditions: Game over. Roll sums available
-	Postconditions: Winner number returned
+	Description: Determines which roll was the highest
+	Input parameters: Sum of rolls as array
+	Returns: Highest roll, winner #
+	Preconditions: Game over. Roll sums available.
+	Postconditions: Max roll returned.
 */
-int max_roll(int roll_sum1, int roll_sum2, int roll_sum3, int roll_sum4, int roll_sum5);
+int max_roll(int rolls[])
+{
+	int max = rolls[0];
+	for (int i = 1; i < 5; i++)
+	{
+		if (rolls[i] > max)
+			max = rolls[i];
+	}
+	return max;
+}
 /*
 	Function: tie_finder()
 	Date Created: 10/02/2019
 	Last Modified:
 	Description: Determines whether or not there was a tie
-	Input parameters: Roll counts
+	Input parameters: Highest roll
 	Returns: T/F
-	Preconditions: Game over. Roll sums available
+	Preconditions: Game over. bet_return() already called
 	Postconditions: Returns T/F
 */
-bool tie_finder(int roll_sum1, int roll_sum2, int roll_sum3, int roll_sum4, int roll_sum5);
+//bool tie_finder(int highest_roll)
+//{
+//	bool duplicates = false;
+//	for (int i = 1; i < 6; i++) 
+//	{
+//		for (int j = i + 1; j < 6; j++) 
+//		{
+//			if (i == j) 
+//			{
+//				duplicates = true;
+//				break;
+//			}
+//		}
+//	}
+//
+//	return duplicates;
+//}
