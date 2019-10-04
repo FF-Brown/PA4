@@ -421,7 +421,7 @@ void old_money(void)
 		while (option != 'y' && option != 'n')
 		{
 			printf("Would you like to retain the funds from the end of your last game? (y/n)\n");
-			scanf("%c", &option);
+			scanf(" %c", &option);
 			if (option == 'n')
 				funds_reset();
 		}
@@ -468,27 +468,6 @@ int game_intro(void)
 	int player_count = 0;
 	printf("Welcome to Blackjack Dice!\n\n");
 	old_money();
-
-	char option_funds = '\0';	
-	int money_check1 = 0, money_check2 = 0, money_check3 = 0, money_check4 = 0, money_check5 = 0;
-	
-	//Check to see if a previous game's money values are stored in data file.
-	FILE* iofile = NULL;
-	iofile = fopen("funds.dat", "r");
-	fscanf(iofile, "%d%d%d%d%d", &money_check1, &money_check2, &money_check3, &money_check4, &money_check5);
-
-	//If any funds differ from default, prompt user to save or overwrite these values.
-	if (money_check1 != DEFAULT_FUNDS || money_check2 != DEFAULT_FUNDS || money_check3 != DEFAULT_FUNDS || money_check4 != DEFAULT_FUNDS || money_check5 != DEFAULT_FUNDS)
-	{
-		while (option_funds != 'y' && option_funds != 'n')
-		{
-			printf("Would you like to retain the funds from the end of your last game? (y/n)\n");
-			scanf(" %c", &option_funds);
-			if (option_funds == 'n')
-				funds_reset();
-		}
-	}
-	fclose(iofile);
 
 	printf("Each player begins with $%d. If you have not read the rules, please do so before playing.\n\nBegin.\n", DEFAULT_FUNDS);
 
