@@ -377,10 +377,9 @@ void turn_flow(int player_number, int player_funds, int* bets, int* rolls, int* 
 	*bets = bet_total;
 	*rolls = roll_sum;
 	*funds = player_funds;
-	printf("Total roll count: %d\n", roll_sum);
-	printf("Total bet: %d\n", bet_total);
-	printf("Total remaining funds: %d\n", player_funds);
-
+	//printf("Total roll count: %d\n", roll_sum);
+	//printf("Total bet: %d\n", bet_total);
+	//printf("Total remaining funds: %d\n", player_funds);
 }
 /*
 	Function: roll_die()
@@ -467,24 +466,25 @@ void old_money(void)
 int game_intro(void)
 {
 	int player_count = 0;
-	printf("Welcome to Blackjack Dice!\n");
+	printf("Welcome to Blackjack Dice!\n\n");
 	old_money();
 
-	char option = '\0';	
+	char option_funds = '\0';	
 	int money_check1 = 0, money_check2 = 0, money_check3 = 0, money_check4 = 0, money_check5 = 0;
 	
 	//Check to see if a previous game's money values are stored in data file.
 	FILE* iofile = NULL;
 	iofile = fopen("funds.dat", "r");
 	fscanf(iofile, "%d%d%d%d%d", &money_check1, &money_check2, &money_check3, &money_check4, &money_check5);
+
 	//If any funds differ from default, prompt user to save or overwrite these values.
 	if (money_check1 != DEFAULT_FUNDS || money_check2 != DEFAULT_FUNDS || money_check3 != DEFAULT_FUNDS || money_check4 != DEFAULT_FUNDS || money_check5 != DEFAULT_FUNDS)
 	{
-		while (option != 'y' && option != 'n')
+		while (option_funds != 'y' && option_funds != 'n')
 		{
 			printf("Would you like to retain the funds from the end of your last game? (y/n)\n");
-			scanf("%c", &option);
-			if (option == 'n')
+			scanf(" %c", &option_funds);
+			if (option_funds == 'n')
 				funds_reset();
 		}
 	}
