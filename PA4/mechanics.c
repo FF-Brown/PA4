@@ -439,7 +439,10 @@ void old_money(void)
 	Preconditions: Game over. 
 	Postconditions: Returns multiplier
 */
-double bet_return(int winning_bet);
+//double bet_return(int max_roll)
+//{
+//
+//}
 /*
 	Function: winnings()
 	Date Created: 10/01/2019
@@ -450,7 +453,7 @@ double bet_return(int winning_bet);
 	Preconditions: Game over. Tie ruled out. Highest roll found. Multiplier calculated.
 	Postconditions: Winnings returned.
 */
-int winnings(int winning_bet, double multiplier);
+//int winnings(int winning_bet, double multiplier);
 /*
 	Function: game_intro()
 	Date Created: 10/01/2019

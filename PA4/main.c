@@ -18,7 +18,8 @@ int main(void)
 	int rolls[5] = { 0, 0, 0, 0, 0 };
 	int winner[5] = { 0, 0, 0, 0, 0 };
 	int winners = 0;
-	int multiplier[5] = { 0, 0, 0, 0, 0 };
+	double multiplier[5] = { 0, 0, 0, 0, 0 };
+	int max = 0;
 
 	srand(time(NULL));
 	display_menu();
@@ -31,6 +32,26 @@ int main(void)
 
 	//At this point, game is over.
 
+	//Find max value rolled by any player
+	max = max_roll(rolls); 
+	//Assign bet multipliers according to whether the player rolled the highest number (not concerned with ties here)
+	for (int i = 0; i < 5; i++)
+	{
+		if (rolls[i] != max)
+			multiplier[i] = 0;
+		else if (rolls[i] == 21)
+		{
+			multiplier[i] = 2;
+			winners++;
+		}
+		else if (rolls[i] == max)
+		{
+			multiplier[i] = 1.5;
+			winners++;
+		}
+	}
+
+	//If tie, change multipliers of winners to 1
 	if (winners > 1)
 	{
 		for (int i = 0; i < 5; i++)

@@ -43,5 +43,5 @@ void old_money(void);
 double bet_return(int winning_bet);
 int winnings(int winning_bet, double multiplier);
 int game_intro(void);
-int max_roll(int roll_sum1, int roll_sum2, int roll_sum3, int roll_sum4, int roll_sum5);
+int max_roll(int rolls[]);
 bool tie_finder(int roll_sum1, int roll_sum2, int roll_sum3, int roll_sum4, int roll_sum5);
