@@ -25,13 +25,17 @@ int main(void)
 	{
 		turn_flow(i, funds[i - 1], &bets[i - 1], &rolls[i - 1], &funds[i - 1]);
 	}
-	printf("Player 1 bet total: %d\n", bets[0]);
-	printf("Player 1 roll sum: %d\n", rolls[0]);
-	printf("Player 1 funds: %d\n\n", funds[0]);
 
-	printf("Player 2 bet total: %d\n", bets[1]);
-	printf("Player 2 roll sum: %d\n", rolls[1]);
-	printf("Player 2 funds: %d\n\n", funds[1]);
+	//At this point, game is over.
+
+
+	//printf("Player 1 bet total: %d\n", bets[0]);
+	//printf("Player 1 roll sum: %d\n", rolls[0]);
+	//printf("Player 1 funds: %d\n\n", funds[0]);
+
+	//printf("Player 2 bet total: %d\n", bets[1]);
+	//printf("Player 2 roll sum: %d\n", rolls[1]);
+	//printf("Player 2 funds: %d\n\n", funds[1]);
 
 	//test
 

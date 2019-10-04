@@ -399,15 +399,36 @@ int roll_die(void)
 }
 /*
 	Function: old_money()
-	Date Created:
-	Last Modified:							W
-	Description:
-	Input parameters:								T
-	Returns:
-	Preconditions:											F
-	Postconditions:	I don't remember what this function was supposed to do.
+	Date Created: 10/01/2019
+	Last Modified: 10/03/2019
+	Description: Checks data file to see if funds have been changed. If so, asks player whether to use those values or reset them to the default value.
+	Input parameters: None
+	Returns: None
+	Preconditions: Data file must exist but not be open.
+	Postconditions:	If player chooses, funds reset. Otherwise, no change made.
 */
-void old_money(void);
+void old_money(void)
+{
+	char option = '\0';
+	int money_check1 = 0, money_check2 = 0, money_check3 = 0, money_check4 = 0, money_check5 = 0;
+
+	//Check to see if a previous game's money values are stored in data file.
+	FILE* iofile = NULL;
+	iofile = fopen("funds.dat", "r");
+	fscanf(iofile, "%d%d%d%d%d", &money_check1, &money_check2, &money_check3, &money_check4, &money_check5);
+	//If any funds differ from default, prompt user to save or overwrite these values.
+	if (money_check1 != DEFAULT_FUNDS || money_check2 != DEFAULT_FUNDS || money_check3 != DEFAULT_FUNDS || money_check4 != DEFAULT_FUNDS || money_check5 != DEFAULT_FUNDS)
+	{
+		while (option != 'y' && option != 'n')
+		{
+			printf("Would you like to retain the funds from the end of your last game? (y/n)\n");
+			scanf("%c", &option);
+			if (option == 'n')
+				funds_reset();
+		}
+	}
+	fclose(iofile);
+}
 /*
 	Function: bet_return()
 	Date Created: 10/01/2019
@@ -442,11 +463,13 @@ int winnings(int winning_bet, double multiplier);
 */
 int game_intro(void)
 {
-	int money_check1 = 0, money_check2 = 0, money_check3 = 0, money_check4 = 0, money_check5 = 0;
 	int player_count = 0;
-	char option = '\0';
 	printf("Welcome to Blackjack Dice!\n");
+	old_money();
 
+	char option = '\0';	
+	int money_check1 = 0, money_check2 = 0, money_check3 = 0, money_check4 = 0, money_check5 = 0;
+	
 	//Check to see if a previous game's money values are stored in data file.
 	FILE* iofile = NULL;
 	iofile = fopen("funds.dat", "r");
